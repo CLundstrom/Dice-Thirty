@@ -16,3 +16,4 @@
 .externalNativeBuild
 local.properties
 gradle.properties
+/app/build
