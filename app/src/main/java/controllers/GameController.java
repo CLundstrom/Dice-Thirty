@@ -1,7 +1,9 @@
 package controllers;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,43 +19,31 @@ import models.Game;
  */
 public class GameController {
 
-    public final int AMOUNT_DICES = 6;
+
     private Game mGame;
     private ArrayList<ImageView> mImageViews;
     private ArrayList<Dice> mActiveDices;
 
     public GameController(ArrayList<ImageView> imageViews) {
         this.mImageViews = imageViews;
-        mGame = new Game(AMOUNT_DICES);
-        mActiveDices = mGame.getDices();
-        updateImageView(this.mImageViews);
+        mGame = new Game();
+        mActiveDices = mGame.getCurrentRound().getDices();
+        updateImageView();
         attachListeners();
     }
 
-    public void startGame() {
-        mGame = new Game(AMOUNT_DICES);
-    }
-
-    public void endGame() {
-    }
-
-    public void updateImageView(ArrayList<ImageView> imageViews) {
-        List<Dice> dices = mGame.getDices();
-        for (int i = 0; i < imageViews.size(); i++) {
-            imageViews.get(i).setImageResource(dices.get(i).getCurrentImage());
-        }
-    }
 
     public void updateImageView() {
-        List<Dice> dices = mGame.getDices();
+        List<Dice> dices = mGame.getCurrentRound().getDices();
         for (int i = 0; i < mImageViews.size(); i++) {
             mImageViews.get(i).setImageResource(dices.get(i).getCurrentImage());
         }
     }
 
-    public void markDice(ImageView view, int position) {
-        List<Dice> tmp = mGame.getDices();
-        tmp.get(position).setMarked();
+    public void refreshScene(Context context, TextView view){
+        mGame.getCurrentRound().tossDices(context);
+        mGame.getCurrentRound().updateRollText(view);
+        updateImageView();
     }
 
     private void attachListeners(){

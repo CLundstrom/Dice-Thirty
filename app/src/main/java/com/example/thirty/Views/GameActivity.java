@@ -2,7 +2,9 @@ package com.example.thirty.Views;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.thirty.R;
 
@@ -20,7 +22,9 @@ import controllers.GameController;
 public class GameActivity extends AppCompatActivity {
 
     private GameController mGameController;
-    private ArrayList<ImageView> diceViews;
+    private ArrayList<ImageView> mDiceViews;
+    private Button roll;
+    private TextView rollText;
 
 
 
@@ -28,9 +32,14 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        diceViews = getDiceViews();
-        mGameController = new GameController(diceViews);
+        roll = findViewById(R.id.button_roll);
+        rollText = findViewById(R.id.rolls);
+        roll.setOnClickListener( d -> {
+            mGameController.refreshScene(this, rollText);
+        });
 
+        mDiceViews = getDiceViews();
+        mGameController = new GameController(mDiceViews);
     }
 
     /**

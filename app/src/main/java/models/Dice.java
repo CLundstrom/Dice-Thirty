@@ -32,28 +32,29 @@ public class Dice {
     }
 
     public void toss() {
-        this.mValue = new Random().nextInt(6) + 1;
-
-        // Updates currentImage to the corresponding value of the dice.
-        switch (mValue) {
-            case 1:
-                mCurrentImage = R.drawable.white1;
-                break;
-            case 2:
-                mCurrentImage = R.drawable.white2;
-                break;
-            case 3:
-                mCurrentImage = R.drawable.white3;
-                break;
-            case 4:
-                mCurrentImage = R.drawable.white4;
-                break;
-            case 5:
-                mCurrentImage = R.drawable.white5;
-                break;
-            case 6:
-                mCurrentImage = R.drawable.white6;
-                break;
+        if(mMarked == false){
+            this.mValue = new Random().nextInt(6) + 1;
+            // Updates currentImage to the corresponding value of the dice.
+            switch (mValue) {
+                case 1:
+                    mCurrentImage = R.drawable.white1;
+                    break;
+                case 2:
+                    mCurrentImage = R.drawable.white2;
+                    break;
+                case 3:
+                    mCurrentImage = R.drawable.white3;
+                    break;
+                case 4:
+                    mCurrentImage = R.drawable.white4;
+                    break;
+                case 5:
+                    mCurrentImage = R.drawable.white5;
+                    break;
+                case 6:
+                    mCurrentImage = R.drawable.white6;
+                    break;
+            }
         }
     }
 

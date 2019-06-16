@@ -10,36 +10,28 @@ import java.util.ArrayList;
  */
 public class Game {
 
-
+    private ArrayList<Integer> scores;
+    private final int GAME_ROUNDS = 3;
     private int mRoundNr;
-    private ArrayList<Dice> mDices = new ArrayList<>();
     private GameRound gameRound;
 
     /**
      * A new game is Initialized and Default values are set.
      */
-    public Game(int diceAmount) {
+    public Game() {
         mRoundNr = 0;
-        mDices = generateDices(diceAmount);
+
+        initializeGame();
+
+        // START SCORE ACTIVITY
+    }
+
+    private void initializeGame(){
         gameRound = new GameRound();
+        //scores.add(gameRound.getScore());
     }
 
-    /**
-     * Generates a new List of dices. Used for each throw or new GameRound.
-     * @return Returns a list of Randomized dices.
-     */
-    public ArrayList<Dice> generateDices(int diceAmount) {
-        ArrayList<Dice> tmp = new ArrayList<>();
-        for (int i = 0; i < diceAmount; i++) {
-            tmp.add(new Dice());
-        }
-        return tmp;
-    }
-
-    /**
-     * @return Returns the current set of Dices.
-     */
-    public ArrayList<Dice> getDices(){
-        return mDices;
+    public GameRound getCurrentRound(){
+        return gameRound;
     }
 }
