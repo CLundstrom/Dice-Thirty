@@ -1,13 +1,6 @@
 package models;
 
-import android.media.Image;
-import android.widget.ImageView;
-
-import com.example.thirty.R;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @Author: Christoffer Lundstrom
@@ -17,29 +10,36 @@ import java.util.List;
  */
 public class Game {
 
-    private static final int AMOUNT_DICES = 6;
-    private int mRoundNr;
-    private List<Dice> mDices = new ArrayList<>();
-    private List<ImageView> mDicesView = new ArrayList<>();
 
-    public Game() {
+    private int mRoundNr;
+    private ArrayList<Dice> mDices = new ArrayList<>();
+    private GameRound gameRound;
+
+    /**
+     * A new game is Initialized and Default values are set.
+     */
+    public Game(int diceAmount) {
         mRoundNr = 0;
-        mDices = generateDices();
+        mDices = generateDices(diceAmount);
+        gameRound = new GameRound();
     }
 
     /**
-     * Initializes the games first round.
+     * Generates a new List of dices. Used for each throw or new GameRound.
      * @return Returns a list of Randomized dices.
      */
-    public ArrayList<Dice> generateDices() {
+    public ArrayList<Dice> generateDices(int diceAmount) {
         ArrayList<Dice> tmp = new ArrayList<>();
-        for (int i = 0; i < AMOUNT_DICES; i++) {
+        for (int i = 0; i < diceAmount; i++) {
             tmp.add(new Dice());
         }
         return tmp;
     }
 
-    public List<Dice> getDices(){
+    /**
+     * @return Returns the current set of Dices.
+     */
+    public ArrayList<Dice> getDices(){
         return mDices;
     }
 }

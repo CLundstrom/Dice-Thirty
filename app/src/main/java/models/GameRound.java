@@ -15,4 +15,7 @@ public class GameRound {
 
     }
 
+    public int getScore() {
+        return mScore;
+    }
 }
