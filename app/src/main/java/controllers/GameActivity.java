@@ -13,6 +13,7 @@ import com.example.thirty.R;
 import java.util.ArrayList;
 
 import controllers.GameController;
+import models.Score;
 
 
 /**
@@ -47,8 +48,15 @@ public class GameActivity extends AppCompatActivity {
             mGameController.refreshScene(this, rollText);
         });
 
+
+        // Testing
+        Score score = new Score();
+
         mDiceViews = getDiceViews();
         mGameController = new GameController(mDiceViews);
+
+
+
     }
 
     /**

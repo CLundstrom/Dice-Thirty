@@ -119,4 +119,8 @@ public class Dice {
         return mMarked;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
