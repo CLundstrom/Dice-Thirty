@@ -1,4 +1,4 @@
-package com.example.thirty.Views;
+package controllers;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

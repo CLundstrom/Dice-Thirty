@@ -1,9 +1,11 @@
-package com.example.thirty.Views;
+package controllers;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.thirty.R;
@@ -25,6 +27,7 @@ public class GameActivity extends AppCompatActivity {
     private ArrayList<ImageView> mDiceViews;
     private Button roll;
     private TextView rollText;
+    private Spinner spinner;
 
 
 
@@ -34,6 +37,12 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         roll = findViewById(R.id.button_roll);
         rollText = findViewById(R.id.rolls);
+        spinner = findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.score_values, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setSelection(0);
         roll.setOnClickListener( d -> {
             mGameController.refreshScene(this, rollText);
         });

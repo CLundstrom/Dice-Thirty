@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Game {
 
     private ArrayList<Integer> scores;
-    private final int GAME_ROUNDS = 3;
+    private final int GAME_ROUNDS = 10;
     private int mRoundNr;
     private GameRound gameRound;
 

@@ -4,4 +4,21 @@
     <string name="button_roll">Roll</string>
     <string name="text_rolls_left">Rolls left: 3</string>
     <string name="out_of_attempts">Out of attempts!</string>
+    <string name="collect_points">Collect Points</string>
+    <string name="rules">
+        1.
+    </string>
+
+    <string-array name="score_values">
+        <item>Low</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
 </resources>
