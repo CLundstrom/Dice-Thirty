@@ -13,82 +13,126 @@ import java.util.List;
  */
 public class Score {
 
+    private static final int SCORE_LOW = 4;
     ArrayList<Dice> mDice = new ArrayList<>();
 
-    public Score(){
-        mDice.add(new Dice(1,false));
-        mDice.add(new Dice(2,false));
-        mDice.add(new Dice(3,false));
+    int mScore = 0;
 
 
+    public Score() {
+        mDice.add(new Dice(1, false));
+        mDice.add(new Dice(1, false));
+        mDice.add(new Dice(0, false));
+        mDice.add(new Dice(0, false));
+        mDice.add(new Dice(5, false));
+        mDice.add(new Dice(6, false));
 
-        findCombinationsOf(mDice, 5);
+        int[] combo = convertDiceValueArray(mDice);
+
+
+        calcScore(combo, 2);
+
+
+        //findCombinationsOf(mDice, 5);
     }
 
+    public int sumIntArr(int[] arr) {
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+
+            sum += arr[i];
+        }
+        return sum;
+    }
 
     /**
      * Will find the unique combinations that a list of dices can
      * sum up to.
+     *
      * @param number The sum we're looking for in the list of dices.
      */
-    public void findCombinationsOf(ArrayList<Dice> dices, int number){
+    public void findCombinationsOf(ArrayList<Dice> dices, int number) {
         ArrayList<Dice> scores = new ArrayList<>();
 
-        // Start with the first and the last dice.
-        combineDices(dices.get(0),1, dices, number, scores);
+
+        // Start with the first and second dice
+        //combineDices(dices.get(0), 1, dices, number, scores);
 
 
-        for(Dice d: scores){
+        for (Dice d : scores) {
             Log.i("SCORES: ", String.valueOf(d.getValue()));
         }
     }
 
+
     /**
-     * Recursive function that will combine all the dices in a list and
-     * save those that match the given value and save them in a new list.
+     * Converts all the values of a set of dices to an array.
      *
-     * @param currentDice
-     * @param indexOfNextDice
      * @param dices
-     * @param number
-     * @param scores
      * @return
      */
-    public ArrayList<Dice> combineDices(Dice currentDice, int indexOfNextDice, ArrayList<Dice> dices, int number, ArrayList<Dice> scores){
+    public int[] convertDiceValueArray(ArrayList<Dice> dices) {
+        int tmpValue = 0;
+        int score = 0;
+        int sum = 0;
 
-        // Base case
-        if(indexOfNextDice == dices.size()){
-            Log.i("MSG", "END OF RECURSION");
-            return null;
+        int[] combos = new int[dices.size()];
+
+        for (int i = 0; i < dices.size(); i++) {
+            combos[i] = dices.get(i).getValue();
         }
 
-        // A sum is found
-
-        // First dice and the value of the next dice is one pair.
-        if (currentDice.getValue() == number){
-            scores.add(currentDice);
-            return scores;
-        }
-
-        // If larger than value skip dice and try combining the next dice.
-        else if (currentDice.getValue() > number){
-            return combineDices(dices.get(indexOfNextDice), indexOfNextDice+1, dices, number, scores);
-        }
-
-        // If sum less than number try to add another.
-        else if(currentDice.getValue() < number){
-            scores.add(currentDice);
-            return combineDices(dices.get(indexOfNextDice),indexOfNextDice+1, dices, number, scores);
-        }
-
-        scores = new ArrayList<>();
-
-        throw new RuntimeException("There was an unexpected error.");
+        return combos;
     }
 
-    public int sumArr(ArrayList<Dice> dices){
+
+    public int calcScore(int[] combos, int findValue) {
+        final int VALUE = findValue;
+        int totalScore = 0;
+        int currentSum = findValue;
+
+        // Outer loop
+        for (int i = 0; i < combos.length; i++) {
+
+            currentSum = findValue; // reset counter
+
+            for (int j = 0; j < combos.length - i; j++) {
+
+                currentSum -= combos[i + j];
+
+                // Value found
+                if (currentSum == 0) {
+
+                    // Add score and set dices used to 0;
+                    for (int y = i; y <= i + j; y++) {
+                        combos[y] = 0;
+                    }
+                    totalScore += findValue;
+                    currentSum = findValue; // reset
+                    i = 0; //reset outer loop
+                    j = -1; //reset inner loop
+                }
+            }
+        }
+        System.out.println(totalScore);
+        Log.d("SCORE:", String.valueOf(totalScore));
+        return totalScore;
+    }
+
+    int calcScoreLow(int[] arr) {
         int sum = 0;
-        for (Dice d: dices){
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] <= SCORE_LOW) {
+                sum += arr[i];
+            }
+        }
+        return sum;
+    }
+
+    public int sumArr(ArrayList<Dice> dices) {
+        int sum = 0;
+        for (Dice d : dices) {
             sum += d.getValue();
         }
         return sum;
