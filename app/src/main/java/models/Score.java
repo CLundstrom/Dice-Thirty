@@ -19,7 +19,6 @@ public class Score {
         mDice.add(new Dice(1,false));
         mDice.add(new Dice(2,false));
         mDice.add(new Dice(3,false));
-        mDice.add(new Dice(4,false));
 
 
 
@@ -27,50 +26,71 @@ public class Score {
     }
 
 
-
-
+    /**
+     * Will find the unique combinations that a list of dices can
+     * sum up to.
+     * @param number The sum we're looking for in the list of dices.
+     */
     public void findCombinationsOf(ArrayList<Dice> dices, int number){
-
-        /**
-         * index 4 dice + index 3 dice == 7
-         *
-         */
-
-
-        // Base case (all dices checked)
-        if(dices.size() == 0) return;
         ArrayList<Dice> scores = new ArrayList<>();
-        for(Dice d: dices){
-            // Each dice is the first. So all gets tested.
-            combineDices(d, dices.size()-1, dices, number, scores);
+
+        // Start with the first and the last dice.
+        combineDices(dices.get(0),1, dices, number, scores);
 
 
+        for(Dice d: scores){
+            Log.i("SCORES: ", String.valueOf(d.getValue()));
         }
-
     }
 
-    public ArrayList<Dice> combineDices(Dice startDice, int indexOfNextDice, ArrayList<Dice> dices, int number, ArrayList<Dice> scores){
+    /**
+     * Recursive function that will combine all the dices in a list and
+     * save those that match the given value and save them in a new list.
+     *
+     * @param currentDice
+     * @param indexOfNextDice
+     * @param dices
+     * @param number
+     * @param scores
+     * @return
+     */
+    public ArrayList<Dice> combineDices(Dice currentDice, int indexOfNextDice, ArrayList<Dice> dices, int number, ArrayList<Dice> scores){
 
         // Base case
-        if(indexOfNextDice == 0){
+        if(indexOfNextDice == dices.size()){
             Log.i("MSG", "END OF RECURSION");
+            return null;
+        }
+
+        // A sum is found
+
+        // First dice and the value of the next dice is one pair.
+        if (currentDice.getValue() == number){
+            scores.add(currentDice);
             return scores;
         }
 
-        // If larger than value try with next dice.
-        if (startDice.getValue()+dices.get(indexOfNextDice).getValue() > number){
-            return combineDices(startDice, indexOfNextDice-1, dices, number, scores);
-        }
-        // If less than try to add another.
-        else if(startDice.getValue()+dices.get(indexOfNextDice).getValue() < number){
-            scores.add(startDice);
-            return combineDices(dices.get(indexOfNextDice), indexOfNextDice-1, dices, number, scores);
-        }
-        else if (startDice.getValue()+dices.get(indexOfNextDice).getValue() == number){
-            Log.i("MSG", String.format("%d %d", startDice.getValue(), dices.get(indexOfNextDice).getValue()));
-            return scores;
+        // If larger than value skip dice and try combining the next dice.
+        else if (currentDice.getValue() > number){
+            return combineDices(dices.get(indexOfNextDice), indexOfNextDice+1, dices, number, scores);
         }
 
-        throw new IndexOutOfBoundsException("There was an error.");
+        // If sum less than number try to add another.
+        else if(currentDice.getValue() < number){
+            scores.add(currentDice);
+            return combineDices(dices.get(indexOfNextDice),indexOfNextDice+1, dices, number, scores);
+        }
+
+        scores = new ArrayList<>();
+
+        throw new RuntimeException("There was an unexpected error.");
+    }
+
+    public int sumArr(ArrayList<Dice> dices){
+        int sum = 0;
+        for (Dice d: dices){
+            sum += d.getValue();
+        }
+        return sum;
     }
 }

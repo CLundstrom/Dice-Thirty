@@ -7,6 +7,8 @@ import android.widget.Button;
 
 import com.example.thirty.R;
 
+import models.Score;
+
 /**
  * @Author: Christoffer Lundstrom
  * @Date: 10/06/2019
@@ -23,5 +25,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         newGame = findViewById(R.id.new_game);
         newGame.setOnClickListener((v) -> startActivity(new Intent(this, GameActivity.class)));
+
+        // Testing
+        Score score = new Score();
     }
 }

@@ -48,10 +48,6 @@ public class GameActivity extends AppCompatActivity {
             mGameController.refreshScene(this, rollText);
         });
 
-
-        // Testing
-        Score score = new Score();
-
         mDiceViews = getDiceViews();
         mGameController = new GameController(mDiceViews);
 
