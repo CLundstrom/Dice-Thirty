@@ -3,32 +3,35 @@ package models;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @Author: Christoffer Lundstrom
  * @Date: 17/06/2019
  * <p>
- * @Description:
+ * @Description: A class that handles Scoring of Dice-Tosses.
  */
 public class Score {
 
     private static final int SCORE_LOW = 4;
     ArrayList<Dice> mDice = new ArrayList<>();
-
     int mScore = 0;
 
 
     public Score() {
-        mDice.add(new Dice(1, false));
-        mDice.add(new Dice(1, false));
-        mDice.add(new Dice(0, false));
-        mDice.add(new Dice(0, false));
-        mDice.add(new Dice(1, false));
-        mDice.add(new Dice(3, false));
+        mDice.add(new Dice(6, false));
+        mDice.add(new Dice(6, false));
+        mDice.add(new Dice(6, false));
+        mDice.add(new Dice(6, false));
+        mDice.add(new Dice(6, false));
+        mDice.add(new Dice(6, false));
 
         int[] combo = convertDiceValueArray(mDice);
-        calcScore(combo, 3);
+        calcScore(combo, 12);
+    }
+
+
+    public int getScore(){
+        return mScore;
     }
 
     /**
@@ -37,7 +40,7 @@ public class Score {
      * @param dices Any number of dices.
      * @return Unsorted list of Dices values. Solely for score Calculation.
      */
-    public int[] convertDiceValueArray(ArrayList<Dice> dices) {
+    private int[] convertDiceValueArray(ArrayList<Dice> dices) {
         int tmpValue = 0;
         int score = 0;
         int sum = 0;
@@ -47,7 +50,6 @@ public class Score {
         for (int i = 0; i < dices.size(); i++) {
             combos[i] = dices.get(i).getValue();
         }
-
         return combos;
     }
 
@@ -60,7 +62,7 @@ public class Score {
      * @param findValue
      * @return
      */
-    public int calcScore(int[] combos, int findValue) {
+    private int calcScore(int[] combos, int findValue) {
         int totalScore = 0;
 
         // Outer loop
@@ -92,10 +94,10 @@ public class Score {
     /**
      * Calculates the Score when a user chooses Low score.
      *
-     * @param arr Takes an array of Integers. Used by
+     * @param arr Takes an array of Integers.
      * @return Returns the summarized score.
      */
-    int calcScoreLow(int[] arr) {
+    private int calcScoreLow(int[] arr) {
         int sum = 0;
         for (int i = 0; i < arr.length; i++) {
 

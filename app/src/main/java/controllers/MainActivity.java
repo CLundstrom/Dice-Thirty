@@ -26,7 +26,5 @@ public class MainActivity extends AppCompatActivity {
         newGame = findViewById(R.id.new_game);
         newGame.setOnClickListener((v) -> startActivity(new Intent(this, GameActivity.class)));
 
-        // Testing
-        Score score = new Score();
     }
 }

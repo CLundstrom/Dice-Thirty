@@ -9,6 +9,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.thirty.R;
+import com.example.thirty.Views.ScoreView;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ import models.Score;
  * @Author: Christoffer Lundstrom
  * @Date: 10/06/2019
  * <p>
- * @Description:
+ * @Description: Represents the Screen viewed after initating a New Game.
  */
 public class GameActivity extends AppCompatActivity {
 
@@ -29,6 +30,7 @@ public class GameActivity extends AppCompatActivity {
     private Button roll;
     private TextView rollText;
     private Spinner spinner;
+    private ScoreView mScoreView;
 
 
 
@@ -39,6 +41,8 @@ public class GameActivity extends AppCompatActivity {
         roll = findViewById(R.id.button_roll);
         rollText = findViewById(R.id.rolls);
         spinner = findViewById(R.id.spinner);
+        mScoreView = new ScoreView(findViewById(R.id.score_view));
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.score_values, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

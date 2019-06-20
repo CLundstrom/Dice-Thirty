@@ -21,17 +21,14 @@ public class GameRound {
     public static final int MAX_RETHROWS = 3;
     private int mAttempt;
     private ArrayList<Dice> mDices;
-    private int mScore;
+    private Score mScore;
 
     public GameRound(){
         mAttempt = 0;
-        mScore = 0;
+        mScore = new Score();
         mDices = generateDices(AMOUNT_DICES);
     }
 
-    public int getScore() {
-        return mScore;
-    }
 
     public ArrayList<Dice> getDices(){
         return mDices;
