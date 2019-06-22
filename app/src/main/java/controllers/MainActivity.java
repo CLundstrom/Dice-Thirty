@@ -13,7 +13,9 @@ import models.Score;
  * @Author: Christoffer Lundstrom
  * @Date: 10/06/2019
  * <p>
- * @Description:
+ * @Description: Main title screen.
+ *
+ * TODO:: Expand with a Main menu, highscore and exit.
  */
 public class MainActivity extends AppCompatActivity {
 

@@ -1,7 +1,6 @@
 package controllers;
 
 import android.content.Context;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +14,7 @@ import models.Game;
  * @Author: Christoffer Lundstrom
  * @Date: 11/06/2019
  * <p>
- * @Description: Controls the main flow of a Game.
+ * @Description: Controls ImageViews, Click-listeners and updates scenes/frames.
  */
 public class GameController {
 
@@ -33,6 +32,9 @@ public class GameController {
     }
 
 
+    /**
+     * Updates the ImageViews to display the dices of the current round.
+     */
     public void updateImageView() {
         List<Dice> dices = mGame.getCurrentRound().getDices();
         for (int i = 0; i < mImageViews.size(); i++) {
@@ -40,12 +42,23 @@ public class GameController {
         }
     }
 
+    /**
+     * Refreshes the Scene by providing a new toss of dices and Updating the View.
+     *
+     * @param context Is passed to a function which generates error messages for the provided Activity.
+     * @param view TextObject to be updated with remaining amount of tosses left.
+     */
     public void refreshScene(Context context, TextView view){
         mGame.getCurrentRound().tossDices(context);
         mGame.getCurrentRound().updateRollText(view);
         updateImageView();
     }
 
+    /**
+     * Initializing onClickListeners for the Dice ImageViews.
+     *
+     * TODO: Only update one dice instead of all when clicked. Working for now though.
+     */
     private void attachListeners(){
         mImageViews.get(0).setOnClickListener( d -> {
             this.mActiveDices.get(0).setMarked();

@@ -27,14 +27,26 @@ public class Dice {
         this.mMarked = marked;
     }
 
+    /**
+     * @return Mark-state of a Dice.
+     */
+    public boolean isMarked() {
+        return mMarked;
+    }
+
+    /**
+     * @return Current value of Dice.
+     */
     public int getValue() {
         return mValue;
     }
 
+    /**
+     * Tosses a Dice and selects the correct image for the dice.
+     */
     public void toss() {
         if(mMarked == false){
             this.mValue = new Random().nextInt(6) + 1;
-            // Updates currentImage to the corresponding value of the dice.
             switch (mValue) {
                 case 1:
                     mCurrentImage = R.drawable.white1;
@@ -58,6 +70,10 @@ public class Dice {
         }
     }
 
+    /**
+     * Fetches the Image of the Dice.
+     * @return Returns an R.id value of current image.
+     */
     public int getCurrentImage() {
         return mCurrentImage;
     }
@@ -65,6 +81,7 @@ public class Dice {
 
     /**
      * Marks or unmarks dices.
+     * TODO: Find better solution than Switch-statement.
      */
     public void setMarked() {
         if(mMarked == false){
@@ -113,10 +130,6 @@ public class Dice {
                     break;
             }
         }
-    }
-
-    public boolean isMarked() {
-        return mMarked;
     }
 
     @Override

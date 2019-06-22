@@ -26,11 +26,17 @@ public class Game {
         // START SCORE ACTIVITY
     }
 
+    /**
+     * Initializes a new GameRound.
+     */
     private void initializeGame(){
         gameRound = new GameRound();
         //scores.add(gameRound.getScore());
     }
 
+    /**
+     * @return Currently played round.
+     */
     public GameRound getCurrentRound(){
         return gameRound;
     }
