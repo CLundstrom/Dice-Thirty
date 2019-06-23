@@ -55,9 +55,10 @@ public class GameRound {
      * Provides new values for the dices. Used for each throw.
      */
     public void tossDices(Context context){
-        if(isAttemptValid(context))
-        for (Dice d: mDices) {
-            d.toss();
+        if(isAttemptValid(context)){
+            for (Dice d: mDices) {
+                d.toss();
+            }
         }
     }
 

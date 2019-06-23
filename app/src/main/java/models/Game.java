@@ -20,9 +20,7 @@ public class Game {
      */
     public Game() {
         mRoundNr = 0;
-
         initializeGame();
-
         // START SCORE ACTIVITY
     }
 

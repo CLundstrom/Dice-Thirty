@@ -2,6 +2,9 @@ package controllers;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,8 +16,8 @@ import com.example.thirty.Views.ScoreView;
 
 import java.util.ArrayList;
 
-import controllers.GameController;
 import models.Score;
+import models.ScoreCalculator;
 
 
 /**
@@ -48,6 +51,31 @@ public class GameActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setSelection(0);
+
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                Log.d("GAME", parent.getSelectedItem().toString());
+                if(parent.getSelectedItem().toString().equals("Low")){
+                    mScoreView.updateViewWithScore(
+                            new Score(ScoreCalculator.calcScoreLow(mGameController.getActiveDices())));
+                }
+                else{
+                    int selectedVal = Integer.valueOf((String)parent.getSelectedItem());
+                    mScoreView.updateViewWithScore(
+                            new Score(ScoreCalculator.calcScore(mGameController.getActiveDices(), selectedVal)));
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         roll.setOnClickListener( d -> {
             mGameController.refreshScene(this, rollText);
         });
@@ -58,6 +86,9 @@ public class GameActivity extends AppCompatActivity {
 
 
     }
+
+
+
 
     /**
      * Fetches ImageViews from the Scene which are later manipulated by GameController.

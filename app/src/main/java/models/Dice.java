@@ -22,11 +22,6 @@ public class Dice {
         mMarked = false;
     }
 
-    Dice(int value, boolean marked) {
-        this.mValue = value;
-        this.mMarked = marked;
-    }
-
     /**
      * @return Mark-state of a Dice.
      */
@@ -134,6 +129,6 @@ public class Dice {
 
     @Override
     public String toString() {
-        return super.toString();
+        return String.valueOf(mValue);
     }
 }

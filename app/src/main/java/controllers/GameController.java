@@ -4,6 +4,8 @@ import android.content.Context;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.thirty.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,14 +33,16 @@ public class GameController {
         attachListeners();
     }
 
+    public ArrayList<Dice> getActiveDices() {
+        return mActiveDices;
+    }
 
     /**
      * Updates the ImageViews to display the dices of the current round.
      */
     public void updateImageView() {
-        List<Dice> dices = mGame.getCurrentRound().getDices();
         for (int i = 0; i < mImageViews.size(); i++) {
-            mImageViews.get(i).setImageResource(dices.get(i).getCurrentImage());
+            mImageViews.get(i).setImageResource(mActiveDices.get(i).getCurrentImage());
         }
     }
 
