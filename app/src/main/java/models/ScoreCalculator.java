@@ -56,9 +56,11 @@ public class ScoreCalculator {
 
             int currentSum = findValue; // Reset each pass
 
-            for (int j = 0; j < combos.length - i; j++) {
+            for (int j = 0; j < combos.length-i; j++) {
 
                 currentSum -= combos[i + j];
+
+                if (currentSum < 0) continue;
 
                 // Combination found
                 if (currentSum == 0) {

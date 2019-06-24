@@ -99,7 +99,7 @@
         app:layout_constraintVertical_bias="0.994" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_collect_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
@@ -116,14 +116,14 @@
         android:layout_marginTop="52dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/button_collect_score" />
 
     <TextView
         android:id="@+id/score_view"
         android:layout_width="90dp"
         android:layout_height="25dp"
         android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/button_collect_score"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent" />

@@ -14,8 +14,6 @@ import models.Score;
  * @Date: 10/06/2019
  * <p>
  * @Description: Main title screen.
- *
- * TODO:: Expand with a Main menu, highscore and exit.
  */
 public class MainActivity extends AppCompatActivity {
 

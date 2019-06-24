@@ -1,6 +1,9 @@
 package controllers;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,6 +14,7 @@ import java.util.List;
 
 import models.Dice;
 import models.Game;
+import models.Score;
 
 /**
  * @Author: Christoffer Lundstrom
@@ -20,29 +24,33 @@ import models.Game;
  */
 public class GameController {
 
-
+    private GameActivity mGameActivityRef;
     private Game mGame;
     private ArrayList<ImageView> mImageViews;
-    private ArrayList<Dice> mActiveDices;
 
-    public GameController(ArrayList<ImageView> imageViews) {
+    public GameController(ArrayList<ImageView> imageViews, GameActivity ref) {
         this.mImageViews = imageViews;
-        mGame = new Game();
-        mActiveDices = mGame.getCurrentRound().getDices();
+        mGameActivityRef = ref;
+        mGame = new Game(this);
         updateImageView();
         attachListeners();
     }
 
-    public ArrayList<Dice> getActiveDices() {
-        return mActiveDices;
+    public Game getCurrentGame(){
+        return this.mGame;
     }
+
+    public void endGame(){
+        mGameActivityRef.nextActivity();
+    }
+
 
     /**
      * Updates the ImageViews to display the dices of the current round.
      */
     public void updateImageView() {
         for (int i = 0; i < mImageViews.size(); i++) {
-            mImageViews.get(i).setImageResource(mActiveDices.get(i).getCurrentImage());
+            mImageViews.get(i).setImageResource(mGame.getCurrentRound().getDices().get(i).getCurrentImage());
         }
     }
 
@@ -65,27 +73,27 @@ public class GameController {
      */
     private void attachListeners(){
         mImageViews.get(0).setOnClickListener( d -> {
-            this.mActiveDices.get(0).setMarked();
+            this.mGame.getCurrentRound().getDices().get(0).setMarked();
             updateImageView();
         });
         mImageViews.get(1).setOnClickListener( d -> {
-            this.mActiveDices.get(1).setMarked();
+            this.mGame.getCurrentRound().getDices().get(1).setMarked();
             updateImageView();
         });
         mImageViews.get(2).setOnClickListener( d -> {
-            this.mActiveDices.get(2).setMarked();
+            this.mGame.getCurrentRound().getDices().get(2).setMarked();
             updateImageView();
         });
         mImageViews.get(3).setOnClickListener( d -> {
-            this.mActiveDices.get(3).setMarked();
+            this.mGame.getCurrentRound().getDices().get(3).setMarked();
             updateImageView();
         });
         mImageViews.get(4).setOnClickListener( d -> {
-            this.mActiveDices.get(4).setMarked();
+            this.mGame.getCurrentRound().getDices().get(4).setMarked();
             updateImageView();
         });
         mImageViews.get(5).setOnClickListener( d -> {
-            this.mActiveDices.get(5).setMarked();
+            this.mGame.getCurrentRound().getDices().get(5).setMarked();
             updateImageView();
         });
     }

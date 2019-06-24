@@ -12,8 +12,6 @@ import models.Score;
 public class ScoreView {
 
     TextView mTextView;
-    Score mCurrentScore;
-
 
     public ScoreView(TextView textView){
         mTextView = textView;

@@ -8,6 +8,7 @@
     <string name="rules">
         1.
     </string>
+    <string name="final_scores">Scores</string>
 
     <string-array name="score_values">
         <item>Low</item>

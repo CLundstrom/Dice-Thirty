@@ -46,8 +46,17 @@ public class GameRound {
         return tmp;
     }
 
+    public Score getScore() {
+        return mScore;
+    }
+
     public void updateRollText(TextView view){
         view.setText("Rolls left: " + (MAX_RETHROWS-mAttempt));
+    }
+
+
+    public void updateRoundScore(Score score){
+        mScore = score;
     }
 
 
