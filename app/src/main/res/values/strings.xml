@@ -9,8 +9,10 @@
         1.
     </string>
     <string name="final_scores">Scores</string>
+    <string name="error_pick_number">You must pick a number!</string>
 
     <string-array name="score_values">
+        <item>Pick a number..</item>
         <item>Low</item>
         <item>4</item>
         <item>5</item>

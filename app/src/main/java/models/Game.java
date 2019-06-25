@@ -1,13 +1,9 @@
 package models;
 
-import android.content.Intent;
-import android.widget.Toast;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 
-import controllers.GameActivity;
 import controllers.GameController;
-import controllers.ScoreActivity;
 
 /**
  * @Author: Christoffer Lundstrom
@@ -17,7 +13,7 @@ import controllers.ScoreActivity;
  */
 public class Game {
 
-    private ArrayList<Score> mGameScores;
+    private static ArrayList<Score> mGameScores;
     private final int GAME_ROUNDS = 10;
     private int mRoundNr;
     private GameRound gameRound;
@@ -36,27 +32,30 @@ public class Game {
     /**
      * Initializes a new GameRound.
      */
-    private void initializeGame(){
+    private void initializeGame() {
         gameRound = new GameRound();
     }
 
-    public void nextRound(){
-        if(mRoundNr < GAME_ROUNDS){
+    public void nextRound() {
+        if (mRoundNr < GAME_ROUNDS) {
             mRoundNr++;
             mGameScores.add(gameRound.getScore());
             gameRound = new GameRound();
-        }
-        else{
+        } else {
             mGameControllerRef.endGame();
         }
 
 
     }
 
+    public ArrayList<Score> getGameScores() {
+        return mGameScores;
+    }
+
     /**
      * @return Currently played round.
      */
-    public GameRound getCurrentRound(){
+    public GameRound getCurrentRound() {
         return gameRound;
     }
 }

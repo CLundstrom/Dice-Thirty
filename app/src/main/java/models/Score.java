@@ -1,8 +1,6 @@
 package models;
 
-import android.util.Log;
-
-import java.util.ArrayList;
+import java.io.Serializable;
 
 /**
  * @Author: Christoffer Lundstrom
@@ -10,7 +8,7 @@ import java.util.ArrayList;
  * <p>
  * @Description: A class that handles Scoring of Dice-Tosses.
  */
-public class Score {
+public class Score implements Serializable {
 
     private static final int SCORE_LOW = 3;
     private int mScore = 0;

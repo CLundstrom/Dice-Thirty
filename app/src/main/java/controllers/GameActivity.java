@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.thirty.R;
 import com.example.thirty.Views.ScoreView;
@@ -54,23 +55,20 @@ public class GameActivity extends AppCompatActivity {
 
         String[] scoreArray = resource.getStringArray(R.array.score_values);
 
-        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_spinner_item,
-                new ArrayList<String>(Arrays.asList(scoreArray))
+                new ArrayList<>(Arrays.asList(scoreArray))
                 );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        ////////////////////////
 
         mScoreSelectionSpinner.setAdapter(adapter);
-        mScoreSelectionSpinner.setSelection(0);
 
 
+        // Function
         mScoreSelectionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                Log.d("GAME", parent.getSelectedItem().toString());
                 if(parent.getSelectedItem().toString().equals("Low")){
                     mGameController
                             .getCurrentGame()
@@ -79,6 +77,10 @@ public class GameActivity extends AppCompatActivity {
                                     ScoreCalculator.calcScoreLow(mGameController.getCurrentGame().getCurrentRound().getDices())));
 
                     mScoreView.updateViewWithScore(mGameController.getCurrentGame().getCurrentRound().getScore());
+                }
+
+                else if(parent.getSelectedItem().toString().equals("Pick a number..")){
+                    // DO NOTHING.
                 }
                 else{
                     int selectedVal = Integer.valueOf((String)parent.getSelectedItem());
@@ -90,7 +92,6 @@ public class GameActivity extends AppCompatActivity {
 
                     mScoreView.updateViewWithScore(mGameController.getCurrentGame().getCurrentRound().getScore());
                 }
-
             }
 
             @Override
@@ -103,11 +104,15 @@ public class GameActivity extends AppCompatActivity {
             mGameController.refreshScene(this, mRollsRemainingText);
         });
         mCollectButton.setOnClickListener(d -> {
-            adapter.remove((String) mScoreSelectionSpinner.getSelectedItem());
-            adapter.notifyDataSetChanged();
-            mGameController.getCurrentGame().nextRound();
-            mGameController.refreshScene(this, mRollsRemainingText);
-
+            String selectedItem = (String)mScoreSelectionSpinner.getSelectedItem();
+            // Don't delete "Pick a number item"
+            if(!selectedItem.equals("Pick a number..")){
+                adapter.remove(selectedItem);
+                adapter.notifyDataSetChanged();
+                mScoreSelectionSpinner.setSelection(0);
+                mGameController.getCurrentGame().nextRound();
+                mGameController.refreshScene(this, mRollsRemainingText);
+            }
         });
 
         mDiceViews = getDiceViews();
@@ -129,8 +134,18 @@ public class GameActivity extends AppCompatActivity {
             return views;
     }
 
+
+    public void errorToast(){
+        Toast.makeText(this, R.string.error_pick_number, Toast.LENGTH_SHORT).show();
+    }
+    /**
+     * Starts the ScoreActivity.
+     */
     public void nextActivity(){
-        startActivity(new Intent(this, ScoreActivity.class));
+
+        Intent intent = new Intent(this, ScoreActivity.class);
+        intent.putExtra("ScoreList", mGameController.getCurrentGame().getGameScores());
+        startActivity(intent);
     }
 
 }

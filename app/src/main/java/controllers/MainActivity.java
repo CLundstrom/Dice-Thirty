@@ -7,7 +7,6 @@ import android.widget.Button;
 
 import com.example.thirty.R;
 
-import models.Score;
 
 /**
  * @Author: Christoffer Lundstrom
