@@ -40,6 +40,7 @@ public class GameActivity extends AppCompatActivity {
     private TextView mRollsRemainingText;
     private Spinner mScoreSelectionSpinner;
     private ScoreView mScoreView;
+    private String mCurrentSelection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public class GameActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         mScoreSelectionSpinner.setAdapter(adapter);
+        mScoreSelectionSpinner.setSelection(0);
 
 
         // Function
@@ -74,8 +76,10 @@ public class GameActivity extends AppCompatActivity {
                             .getCurrentGame()
                             .getCurrentRound()
                             .updateRoundScore(new Score(
-                                    ScoreCalculator.calcScoreLow(mGameController.getCurrentGame().getCurrentRound().getDices())));
+                                    ScoreCalculator.calcScoreLow(mGameController.getCurrentGame().getCurrentRound().getDices()),
+                                    parent.getSelectedItem().toString()));
 
+                    mGameController.getCurrentGame().getCurrentRound().getScore().setChoice(parent.getSelectedItem().toString());
                     mScoreView.updateViewWithScore(mGameController.getCurrentGame().getCurrentRound().getScore());
                 }
 
@@ -88,8 +92,10 @@ public class GameActivity extends AppCompatActivity {
                             .getCurrentGame()
                             .getCurrentRound()
                             .updateRoundScore(new Score(
-                                    ScoreCalculator.calcScore(mGameController.getCurrentGame().getCurrentRound().getDices(), selectedVal)));
+                                    ScoreCalculator.calcScore(mGameController.getCurrentGame().getCurrentRound().getDices(), selectedVal),
+                                    parent.getSelectedItem().toString()));
 
+                    mGameController.getCurrentGame().getCurrentRound().getScore().setChoice(parent.getSelectedItem().toString());
                     mScoreView.updateViewWithScore(mGameController.getCurrentGame().getCurrentRound().getScore());
                 }
             }

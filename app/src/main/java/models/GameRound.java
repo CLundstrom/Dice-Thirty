@@ -59,7 +59,6 @@ public class GameRound {
         mScore = score;
     }
 
-
     /**
      * Provides new values for the dices. Used for each throw.
      */

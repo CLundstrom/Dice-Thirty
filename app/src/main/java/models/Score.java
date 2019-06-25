@@ -12,11 +12,13 @@ public class Score implements Serializable {
 
     private static final int SCORE_LOW = 3;
     private int mScore = 0;
+    private String mChoice;
 
     public Score(){}
 
-    public Score(int score) {
+    public Score(int score, String choice) {
         mScore = score;
+        mChoice = choice;
     }
 
     public int getScore(){
@@ -26,4 +28,11 @@ public class Score implements Serializable {
         mScore = score;
     }
 
+    public String getChoice() {
+        return mChoice;
+    }
+
+    public void setChoice(String choice) {
+        mChoice = choice;
+    }
 }

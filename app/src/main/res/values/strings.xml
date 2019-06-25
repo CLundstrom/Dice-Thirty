@@ -6,10 +6,15 @@
     <string name="out_of_attempts">Out of attempts!</string>
     <string name="collect_points">Collect Points</string>
     <string name="rules">
-        1.
+        Rules:\n\n
+        1. A game consists of 10 rounds. \n\n
+        2. Each round has 2 chances to re-roll any number of dices.\n\n
+        3. Each value can be chosen to collect points only once.
     </string>
     <string name="final_scores">Scores</string>
     <string name="error_pick_number">You must pick a number!</string>
+    <string name="replay">Play again</string>
+    <string name="main_menu">Main menu</string>
 
     <string-array name="score_values">
         <item>Pick a number..</item>

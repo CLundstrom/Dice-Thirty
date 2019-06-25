@@ -1,7 +1,7 @@
 package models;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import controllers.GameController;
 
@@ -13,7 +13,7 @@ import controllers.GameController;
  */
 public class Game {
 
-    private static ArrayList<Score> mGameScores;
+    private ArrayList<Score> mGameScores;
     private final int GAME_ROUNDS = 10;
     private int mRoundNr;
     private GameRound gameRound;
@@ -36,18 +36,24 @@ public class Game {
         gameRound = new GameRound();
     }
 
+    private void saveScore() {
+        mGameScores.add(gameRound.getScore());
+    }
+
     public void nextRound() {
         if (mRoundNr < GAME_ROUNDS) {
             mRoundNr++;
-            mGameScores.add(gameRound.getScore());
+            saveScore();
             gameRound = new GameRound();
         } else {
+            saveScore();
             mGameControllerRef.endGame();
         }
-
-
     }
 
+    /**
+     * @return Score of the game.
+     */
     public ArrayList<Score> getGameScores() {
         return mGameScores;
     }
