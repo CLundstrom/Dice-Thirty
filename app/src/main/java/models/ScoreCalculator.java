@@ -3,17 +3,22 @@ package models;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * @Author: Christoffer Lundstrom
  * @Date: 20/06/2019
  * <p>
- * @Description: A class that handles Scoring of Dice-Tosses.
+ * @Description: A class that calculate the Score of a dice combination.
+ *
+ * Uses an algorithm designed to find all Permutations of the Dices and compare all of them to
+ * find the largest sum possible for the given value.
  */
 public class ScoreCalculator {
     private static final int SCORE_LOW = 3;
-    int mScore = 0;
 
+    private static ArrayList<int[]> permutations = new ArrayList();
+    private static ArrayList<Integer> score = new ArrayList<Integer>();
 
     public ScoreCalculator() {
     }
@@ -47,37 +52,85 @@ public class ScoreCalculator {
      * @return
      */
     public static int calcScore(ArrayList<Dice> dices, int findValue) {
-
         int[] combos = convertDiceValueArray(dices);
+        permutations = new ArrayList<>();
+        score = new ArrayList<>();
+
+        findPermutations( 0,combos);
+        for(int arr[] : permutations){
+            compareArrays(arr, findValue);
+        }
+
+        int max = 0;
+        for(int a : score){
+            if(max < a) max = a;
+        }
+
+        return max;
+    }
+
+    /**
+     * Finds all Permutations of the given Value-array.
+     *
+     * @param position Starting position of the array.
+     * @param arr Array to Permutate.
+     */
+    public static void findPermutations(int position, int[] arr) {
+        int[] array = Arrays.copyOf(arr, arr.length);
+        if (position == array.length - 1) {
+            permutations.add(array);
+        }
+
+        for (int i = position; i < array.length; i++) {
+            int temp = array[position];
+            array[position] = array[i];
+            array[i] = temp;
+
+            findPermutations(position + 1, array);
+
+            array[i] = array[position]; // swap the values back
+            array[position] = temp;
+        }
+    }
+
+    /**
+     * Calculates the Score of the dices by iterating over an Integer array several passes so make sure
+     * no score gets missed.
+     * TODO: Fix Collect 7 bug
+     * @param find
+     */
+    public static void compareArrays(int[] compare, int find) {
+        int[] arr = Arrays.copyOfRange(compare, 0, compare.length);
         int totalScore = 0;
 
         // Outer loop
-        for (int i = 0; i < combos.length; i++) {
+        for (int i = 0; i < arr.length; i++) {
 
-            int currentSum = findValue; // Reset each pass
+            int currentSum = find; // Reset each pass
 
-            for (int j = 0; j < combos.length-i; j++) {
+            for (int j = 0; j < arr.length - i; j++) {
 
-                currentSum -= combos[i + j];
+                currentSum -= arr[i + j];
 
                 if (currentSum < 0) continue;
 
                 // Combination found
                 if (currentSum == 0) {
+
                     // Sets dices used for calculation to 0;
                     for (int y = i; y <= i + j; y++) {
-                        combos[y] = 0;
+                        arr[y] = 0;
                     }
-                    totalScore += findValue;
-                    currentSum = findValue; // reset
+                    totalScore += find;
+                    currentSum = find; // reset
                     i = 0; // Reset outer loop
                     j = -1; // Reset inner loop
                 }
             }
         }
-        Log.d("SCORECALC", String.valueOf(totalScore));
-        return totalScore;
+        score.add(totalScore);
     }
+
 
     /**
      * Calculates the Score when a user chooses Low score.

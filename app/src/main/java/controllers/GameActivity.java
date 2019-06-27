@@ -1,11 +1,9 @@
 package controllers;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -40,7 +38,6 @@ public class GameActivity extends AppCompatActivity {
     private TextView mRollsRemainingText;
     private Spinner mScoreSelectionSpinner;
     private ScoreView mScoreView;
-    private String mCurrentSelection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +64,9 @@ public class GameActivity extends AppCompatActivity {
         mScoreSelectionSpinner.setSelection(0);
 
 
-        // Function
+        /**
+         * Decides which functions to call based on 3 different selections. (Low, Other or Pick a number)
+         */
         mScoreSelectionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -101,14 +100,20 @@ public class GameActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
 
+        /**
+         * Refreshes the Scene and resets selection.
+         */
         mRollButton.setOnClickListener(d -> {
             mGameController.refreshScene(this, mRollsRemainingText);
+            mScoreSelectionSpinner.setSelection(0);
         });
+
+        /**
+         * Removes the used number-items from the Spinner and initiates next round.
+         */
         mCollectButton.setOnClickListener(d -> {
             String selectedItem = (String)mScoreSelectionSpinner.getSelectedItem();
             // Don't delete "Pick a number item"
@@ -118,6 +123,7 @@ public class GameActivity extends AppCompatActivity {
                 mScoreSelectionSpinner.setSelection(0);
                 mGameController.getCurrentGame().nextRound();
                 mGameController.refreshScene(this, mRollsRemainingText);
+                mScoreView.updateView();
             }
         });
 
@@ -140,10 +146,6 @@ public class GameActivity extends AppCompatActivity {
             return views;
     }
 
-
-    public void errorToast(){
-        Toast.makeText(this, R.string.error_pick_number, Toast.LENGTH_SHORT).show();
-    }
     /**
      * Starts the ScoreActivity.
      */

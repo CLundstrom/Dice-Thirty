@@ -30,32 +30,32 @@ public class ScoreActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
+
         // ViewItems
         mButtonReplay = findViewById(R.id.replay);
         mButtonMain = findViewById(R.id.button_mainmenu);
         mScoreText = findViewById(R.id.editText_scores);
-        ////
 
+
+        // Activity buttons
         mButtonReplay.setOnClickListener(d -> {
             startActivity(new Intent(this, GameActivity.class));
         });
-
         mButtonMain.setOnClickListener(d -> {
             startActivity(new Intent(this, MainActivity.class));
         });
 
-
-        Intent intent = getIntent();
-        mScoreList = (ArrayList<Score>) intent.getExtras().getSerializable("ScoreList");
-        Log.d("ACTIVITY", "SCOREACTIVITY");
         printScores();
-
-
-
-
     }
 
+
+    /**
+     * Fetches Score sent from GameActivity and prints the score-screen.
+     */
     private void printScores(){
+        Intent intent = getIntent();
+        mScoreList = (ArrayList<Score>) intent.getExtras().getSerializable("ScoreList");
+
         int total = 0;
         mScoreList.sort((s1,s2) -> s1.getChoice().compareTo(s2.getChoice()));
         mScoreText.append("Choice.........Score\n\n");
