@@ -2,7 +2,7 @@
     <string name="app_name">Thirty</string>
     <string name="new_game">New Game</string>
     <string name="button_roll">Roll</string>
-    <string name="text_rolls_left">Rolls left: 3</string>
+    <string name="text_rolls_left">Rolls left: 2</string>
     <string name="out_of_attempts">Out of attempts!</string>
     <string name="collect_points">Collect Points</string>
     <string name="rules">

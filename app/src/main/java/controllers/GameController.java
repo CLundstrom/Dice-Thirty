@@ -1,20 +1,14 @@
 package controllers;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.thirty.R;
-
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
-
-import models.Dice;
 import models.Game;
-import models.Score;
 
 /**
  * @Author: Christoffer Lundstrom
@@ -24,6 +18,7 @@ import models.Score;
  */
 public class GameController {
 
+    private final String STATE_GAMECONTROLLER = "STATE_GAMECONTROLLER";
     private GameActivity mGameActivityRef;
     private Game mGame;
     private ArrayList<ImageView> mImageViews;

@@ -1,6 +1,8 @@
 package com.example.thirty.Views;
 import android.widget.TextView;
 
+import java.io.Serializable;
+
 import models.Score;
 
 /**
@@ -9,7 +11,7 @@ import models.Score;
  * <p>
  * @Description: Handles the display of current Score when given a TextView and a Score.
  */
-public class ScoreView {
+public class ScoreView  {
 
     TextView mTextView;
 

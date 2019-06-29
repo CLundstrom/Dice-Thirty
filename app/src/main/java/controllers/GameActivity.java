@@ -2,6 +2,8 @@ package controllers;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,11 +13,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.thirty.R;
 import com.example.thirty.Views.ScoreView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -31,8 +32,10 @@ import models.ScoreCalculator;
  */
 public class GameActivity extends AppCompatActivity {
 
+    private final String STATE_GAMEACTIVITY = "STATE_GAMEACTIVITY";
     private GameController mGameController;
     private ArrayList<ImageView> mDiceViews;
+
     private Button mRollButton;
     private Button mCollectButton;
     private TextView mRollsRemainingText;
@@ -43,6 +46,16 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+
+        if(savedInstanceState != null ){
+            this.mGameController = (GameController)savedInstanceState.getParcelable(STATE_GAMEACTIVITY);
+        }
+        else {
+            mDiceViews = getDiceViews();
+            mGameController = new GameController(mDiceViews, this);
+        }
+
         mRollButton = findViewById(R.id.button_roll);
         mCollectButton = findViewById(R.id.button_collect_score);
         mRollsRemainingText = findViewById(R.id.rolls);
@@ -64,8 +77,7 @@ public class GameActivity extends AppCompatActivity {
         mScoreSelectionSpinner.setSelection(0);
 
 
-        /**
-         * Decides which functions to call based on 3 different selections. (Low, Other or Pick a number)
+        /** Decides which functions to call based on 3 different selections. (Low, Other or Pick a number)
          */
         mScoreSelectionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -103,8 +115,7 @@ public class GameActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {}
         });
 
-        /**
-         * Refreshes the Scene and resets selection.
+        /** Refreshes the Scene and resets selection.
          */
         mRollButton.setOnClickListener(d -> {
             mGameController.refreshScene(this, mRollsRemainingText);
@@ -127,12 +138,13 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        mDiceViews = getDiceViews();
-        mGameController = new GameController(mDiceViews, this);
+
+
+
     }
 
-    /**
-     * Fetches ImageViews from the Scene which are later manipulated by GameController.
+    /** Fetches ImageViews from the Scene which are later manipulated by GameController.
+     *
      * @return
      */
     private ArrayList<ImageView> getDiceViews(){
@@ -155,5 +167,4 @@ public class GameActivity extends AppCompatActivity {
         intent.putExtra("ScoreList", mGameController.getCurrentGame().getGameScores());
         startActivity(intent);
     }
-
 }

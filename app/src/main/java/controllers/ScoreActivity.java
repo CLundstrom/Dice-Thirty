@@ -17,10 +17,11 @@ import models.Score;
  * @Author: Christoffer Lundstrom
  * @Date: 10/06/2019
  * <p>
- * @Description:
+ * @Description: The Activity which handles the final Score screen and displays the results.
  */
 public class ScoreActivity extends AppCompatActivity {
 
+    private final String STATE_SCOREACTIVITY = "STATE_SCOREACTIVITY";
     private ArrayList<Score> mScoreList;
     private TextView mScoreText;
     private Button mButtonReplay;
@@ -29,6 +30,14 @@ public class ScoreActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(savedInstanceState != null ){
+            this.mScoreList = (ArrayList<Score>)savedInstanceState.getSerializable(STATE_SCOREACTIVITY);
+        }
+        else {
+            // Get from previous Activity.
+            Intent intent = getIntent();
+            mScoreList = (ArrayList<Score>) intent.getExtras().getSerializable("ScoreList");
+        }
         setContentView(R.layout.activity_score);
 
         // ViewItems
@@ -48,13 +57,20 @@ public class ScoreActivity extends AppCompatActivity {
         printScores();
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState){
+        savedInstanceState.putSerializable(STATE_SCOREACTIVITY, mScoreList);
+
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+
 
     /**
      * Fetches Score sent from GameActivity and prints the score-screen.
      */
     private void printScores(){
-        Intent intent = getIntent();
-        mScoreList = (ArrayList<Score>) intent.getExtras().getSerializable("ScoreList");
+
 
         int total = 0;
         mScoreList.sort((s1,s2) -> s1.getChoice().compareTo(s2.getChoice()));

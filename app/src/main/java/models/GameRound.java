@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class GameRound {
 
     public final int AMOUNT_DICES = 6;
-    public static final int MAX_RETHROWS = 3;
+    public static final int MAX_RETHROWS = 2;
     private int mAttempt;
     private ArrayList<Dice> mDices;
     private Score mScore;
