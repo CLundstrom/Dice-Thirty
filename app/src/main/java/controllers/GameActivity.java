@@ -127,9 +127,9 @@ public class GameActivity extends AppCompatActivity {
                 adapter.remove(selectedItem);
                 adapter.notifyDataSetChanged();
                 mScoreSelectionSpinner.setSelection(0);
-                mGameController.getCurrentGame().nextRound();
-
                 mGameController.refreshScene(this, mRollsRemainingText);
+                mGameController.getCurrentGame().nextRound();
+                mGameController.getCurrentGame().getCurrentRound().updateRollText(mRollsRemainingText);
                 mScoreView.updateView();
             }
         });

@@ -47,7 +47,6 @@ public class ScoreCalculator {
     /**
      * Calculates the Score of the dices by iterating over an Integer array several passes so make sure
      * no score gets missed.
-     * TODO: Fix Collect 7 bug
      * @param findValue
      * @return
      */
@@ -96,7 +95,6 @@ public class ScoreCalculator {
     /**
      * Calculates the Score of the dices by iterating over an Integer array several passes so make sure
      * no score gets missed.
-     * TODO: Fix Collect 7 bug
      * @param find
      */
     public static void compareArrays(int[] compare, int find) {

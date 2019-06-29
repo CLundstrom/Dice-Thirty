@@ -56,6 +56,7 @@ public class GameRound {
         view.setText("Rolls left: " + mMaxRethrows);
     }
 
+
     /**
      * Sets current round score.
      * @param score Score to set.
@@ -90,4 +91,5 @@ public class GameRound {
             return false;
         }
     }
+
 }
