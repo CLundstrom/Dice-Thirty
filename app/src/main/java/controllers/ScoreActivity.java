@@ -3,7 +3,6 @@ package controllers;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -24,8 +23,6 @@ public class ScoreActivity extends AppCompatActivity {
     private final String STATE_SCOREACTIVITY = "STATE_SCOREACTIVITY";
     private ArrayList<Score> mScoreList;
     private TextView mScoreText;
-    private Button mButtonReplay;
-    private Button mButtonMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,26 +38,20 @@ public class ScoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_score);
 
         // ViewItems
-        mButtonReplay = findViewById(R.id.replay);
-        mButtonMain = findViewById(R.id.button_mainmenu);
+        Button buttonReplay = findViewById(R.id.replay);
+        Button buttonMain = findViewById(R.id.button_mainmenu);
         mScoreText = findViewById(R.id.editText_scores);
 
 
         // Activity buttons
-        mButtonReplay.setOnClickListener(d -> {
-            startActivity(new Intent(this, GameActivity.class));
-        });
-        mButtonMain.setOnClickListener(d -> {
-            startActivity(new Intent(this, MainActivity.class));
-        });
-
+        buttonReplay.setOnClickListener(d -> startActivity(new Intent(this, GameActivity.class)));
+        buttonMain.setOnClickListener(d -> startActivity(new Intent(this, MainActivity.class)));
         printScores();
     }
 
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState){
         savedInstanceState.putSerializable(STATE_SCOREACTIVITY, mScoreList);
-
         super.onSaveInstanceState(savedInstanceState);
     }
 

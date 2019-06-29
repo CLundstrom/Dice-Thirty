@@ -23,15 +23,8 @@ public class Game {
     public Game(GameController gameController) {
         mRoundNr = 1;
         mGameScores = new ArrayList<>();
-        initializeGame();
-        mGameControllerRef = gameController;
-    }
-
-    /**
-     * Initializes a new GameRound.
-     */
-    private void initializeGame() {
         gameRound = new GameRound();
+        mGameControllerRef = gameController;
     }
 
     private void saveScore() {

@@ -1,12 +1,8 @@
 package controllers;
 
 import android.content.Context;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import models.Game;
 
@@ -18,7 +14,6 @@ import models.Game;
  */
 public class GameController {
 
-    private final String STATE_GAMECONTROLLER = "STATE_GAMECONTROLLER";
     private GameActivity mGameActivityRef;
     private Game mGame;
     private ArrayList<ImageView> mImageViews;
@@ -43,7 +38,7 @@ public class GameController {
     /**
      * Updates the ImageViews to display the dices of the current round.
      */
-    public void updateImageView() {
+    private void updateImageView() {
         for (int i = 0; i < mImageViews.size(); i++) {
             mImageViews.get(i).setImageResource(mGame.getCurrentRound().getDices().get(i).getCurrentImage());
         }

@@ -2,8 +2,6 @@ package controllers;
 
 import android.content.Intent;
 import android.content.res.Resources;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,8 +13,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import com.example.thirty.R;
 import com.example.thirty.Views.ScoreView;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -28,7 +24,7 @@ import models.ScoreCalculator;
  * @Author: Christoffer Lundstrom
  * @Date: 10/06/2019
  * <p>
- * @Description: Represents the Screen viewed after initating a New Game.
+ * @Description: Represents the Screen viewed after initiating a New Game.
  */
 public class GameActivity extends AppCompatActivity {
 
@@ -47,9 +43,8 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-
         if(savedInstanceState != null ){
-            this.mGameController = (GameController)savedInstanceState.getParcelable(STATE_GAMEACTIVITY);
+            this.mGameController = savedInstanceState.getParcelable(STATE_GAMEACTIVITY);
         }
         else {
             mDiceViews = getDiceViews();
@@ -66,7 +61,7 @@ public class GameActivity extends AppCompatActivity {
 
         String[] scoreArray = resource.getStringArray(R.array.score_values);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
                 new ArrayList<>(Arrays.asList(scoreArray))
@@ -77,7 +72,7 @@ public class GameActivity extends AppCompatActivity {
         mScoreSelectionSpinner.setSelection(0);
 
 
-        /** Decides which functions to call based on 3 different selections. (Low, Other or Pick a number)
+        /* Decides which functions to call based on 3 different selections. (Low, Other or Pick a number)
          */
         mScoreSelectionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -86,7 +81,7 @@ public class GameActivity extends AppCompatActivity {
                     mGameController
                             .getCurrentGame()
                             .getCurrentRound()
-                            .updateRoundScore(new Score(
+                            .setRoundScore(new Score(
                                     ScoreCalculator.calcScoreLow(mGameController.getCurrentGame().getCurrentRound().getDices()),
                                     parent.getSelectedItem().toString()));
 
@@ -95,14 +90,14 @@ public class GameActivity extends AppCompatActivity {
                 }
 
                 else if(parent.getSelectedItem().toString().equals("Pick a number..")){
-                    // DO NOTHING.
+                    // Do nothing
                 }
                 else{
                     int selectedVal = Integer.valueOf((String)parent.getSelectedItem());
                     mGameController
                             .getCurrentGame()
                             .getCurrentRound()
-                            .updateRoundScore(new Score(
+                            .setRoundScore(new Score(
                                     ScoreCalculator.calcScore(mGameController.getCurrentGame().getCurrentRound().getDices(), selectedVal),
                                     parent.getSelectedItem().toString()));
 
@@ -115,15 +110,15 @@ public class GameActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {}
         });
 
-        /** Refreshes the Scene and resets selection.
+        /* Refreshes the Scene and resets selection.
          */
         mRollButton.setOnClickListener(d -> {
             mGameController.refreshScene(this, mRollsRemainingText);
             mScoreSelectionSpinner.setSelection(0);
         });
 
-        /**
-         * Removes the used number-items from the Spinner and initiates next round.
+        /*
+         * Removes the used items from the Spinner and initiates next round.
          */
         mCollectButton.setOnClickListener(d -> {
             String selectedItem = (String)mScoreSelectionSpinner.getSelectedItem();
@@ -133,28 +128,24 @@ public class GameActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
                 mScoreSelectionSpinner.setSelection(0);
                 mGameController.getCurrentGame().nextRound();
+
                 mGameController.refreshScene(this, mRollsRemainingText);
                 mScoreView.updateView();
             }
         });
-
-
-
-
     }
 
     /** Fetches ImageViews from the Scene which are later manipulated by GameController.
-     *
-     * @return
+     * @return Returns a list of the Dice Views.
      */
     private ArrayList<ImageView> getDiceViews(){
             ArrayList<ImageView> views = new ArrayList<>();
-            views.add((ImageView) findViewById(R.id.dice1));
-            views.add((ImageView) findViewById(R.id.dice2));
-            views.add((ImageView) findViewById(R.id.dice3));
-            views.add((ImageView) findViewById(R.id.dice4));
-            views.add((ImageView) findViewById(R.id.dice5));
-            views.add((ImageView) findViewById(R.id.dice6));
+            views.add(findViewById(R.id.dice1));
+            views.add(findViewById(R.id.dice2));
+            views.add(findViewById(R.id.dice3));
+            views.add(findViewById(R.id.dice4));
+            views.add(findViewById(R.id.dice5));
+            views.add(findViewById(R.id.dice6));
             return views;
     }
 

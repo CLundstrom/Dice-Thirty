@@ -1,8 +1,6 @@
 package com.example.thirty.Views;
 import android.widget.TextView;
 
-import java.io.Serializable;
-
 import models.Score;
 
 /**

@@ -6,7 +6,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.thirty.R;
-
 import java.util.ArrayList;
 
 /**
@@ -18,13 +17,12 @@ import java.util.ArrayList;
 public class GameRound {
 
     public final int AMOUNT_DICES = 6;
-    public static final int MAX_RETHROWS = 2;
-    private int mAttempt;
+    private int mMaxRethrows;
     private ArrayList<Dice> mDices;
     private Score mScore;
 
     public GameRound(){
-        mAttempt = 0;
+        mMaxRethrows = 2;
         mScore = new Score();
         mDices = generateDices(AMOUNT_DICES);
     }
@@ -50,12 +48,19 @@ public class GameRound {
         return mScore;
     }
 
+    /**
+     * Updates the Rolls Left TextView.
+     * @param view View to update.
+     */
     public void updateRollText(TextView view){
-        view.setText("Rolls left: " + (MAX_RETHROWS-mAttempt));
+        view.setText("Rolls left: " + mMaxRethrows);
     }
 
-
-    public void updateRoundScore(Score score){
+    /**
+     * Sets current round score.
+     * @param score Score to set.
+     */
+    public void setRoundScore(Score score){
         mScore = score;
     }
 
@@ -64,6 +69,7 @@ public class GameRound {
      */
     public void tossDices(Context context){
         if(isAttemptValid(context)){
+            mMaxRethrows--;
             for (Dice d: mDices) {
                 d.toss();
             }
@@ -71,13 +77,10 @@ public class GameRound {
     }
 
     /**
-     *
-     * @param context The context in which the Toast should appear.
+     * @param context The context in which the Error Toast should appear.
      */
     private boolean isAttemptValid(Context context){
-
-        if(mAttempt < MAX_RETHROWS){
-            mAttempt++;
+        if(mMaxRethrows > 0){
             return true;
         }
         else{
