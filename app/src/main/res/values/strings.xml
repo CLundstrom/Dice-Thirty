@@ -15,7 +15,7 @@
     <string name="error_pick_number">You must pick a number!</string>
     <string name="replay">Play again</string>
     <string name="main_menu">Main menu</string>
-
+    <string name="nrRounds">Round: </string>
     <string-array name="score_values">
         <item>Pick a number..</item>
         <item>Low</item>

@@ -32,9 +32,8 @@ import models.ScoreCalculator;
  */
 public class GameActivity extends AppCompatActivity {
 
-    // PARCELS
+    // PARCELABLE KEY
     private final String STATE_GAME = "STATE_GAME";
-
 
     // CONTROLLERS
     private Game mGame;
@@ -44,10 +43,12 @@ public class GameActivity extends AppCompatActivity {
     private Button mRollButton;
     private Button mCollectButton;
     private TextView mRollsRemainingText;
+    private TextView mRoundNr;
     private Spinner mScoreSelectionSpinner;
     private ScoreView mScoreView;
     private ArrayAdapter<String> mAdapter;
     private ArrayList<ImageView> mDiceViews;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,8 @@ public class GameActivity extends AppCompatActivity {
         getDiceViews();
         setDiceViewListeners();
         updateImageView();
+        mGame.getCurrentRound().updateRollsText(mRollsRemainingText);
+        mGame.setRoundNrText(mRoundNr);
     }
 
     @Override
@@ -169,6 +172,7 @@ public class GameActivity extends AppCompatActivity {
         mRollsRemainingText = findViewById(R.id.rolls);
         mScoreSelectionSpinner = findViewById(R.id.spinner);
         mScoreView = new ScoreView(findViewById(R.id.score_view));
+        mRoundNr = findViewById(R.id.round_nr);
 
         getDiceViews();
 
@@ -185,16 +189,20 @@ public class GameActivity extends AppCompatActivity {
          */
         mCollectButton.setOnClickListener(d -> {
             String selectedItem = (String) mScoreSelectionSpinner.getSelectedItem();
-            // Don't delete "Pick a number item"
             if (!selectedItem.equals("Pick a number..")) {
                 mAdapter.remove(selectedItem);
                 mAdapter.notifyDataSetChanged();
                 mScoreSelectionSpinner.setSelection(0);
-                mGame.nextRound();
+                boolean proceed = mGame.nextRound();
                 mGame.getCurrentRound().resetDices();
-                mGame.getCurrentRound().resetRollText(mRollsRemainingText);
+                mGame.getCurrentRound().updateRollsText(mRollsRemainingText);
                 updateImageView();
                 mScoreView.setDefaultScoreView();
+                mGame.setRoundNrText(mRoundNr);
+
+                if(proceed){
+                    nextActivity();
+                }
             }
         });
 
@@ -242,7 +250,7 @@ public class GameActivity extends AppCompatActivity {
      */
     public void refreshScene(Context context, TextView view) {
         mGame.getCurrentRound().tossDices(context);
-        mGame.getCurrentRound().resetRollText(view);
+        mGame.getCurrentRound().updateRollsText(view);
         updateImageView();
     }
 }

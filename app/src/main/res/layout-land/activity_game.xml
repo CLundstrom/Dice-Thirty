@@ -6,6 +6,23 @@
     android:layout_height="match_parent"
     tools:context="controllers.GameActivity">
 
+    <TextView
+        android:id="@+id/round_nr"
+        android:layout_width="107dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/nrRounds"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/rolls"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.173"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dice5"
+        app:layout_constraintVertical_bias="1.0" />
+
     <ImageView
         android:id="@+id/dice1"
         android:layout_width="95dp"

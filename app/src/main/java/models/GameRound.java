@@ -89,7 +89,7 @@ public class GameRound implements Parcelable {
      *
      * @param view View to update.
      */
-    public void resetRollText(TextView view) {
+    public void updateRollsText(TextView view) {
         view.setText("Rolls left: " + mMaxRethrows);
     }
 

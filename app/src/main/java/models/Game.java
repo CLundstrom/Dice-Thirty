@@ -2,6 +2,8 @@ package models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 /**
@@ -15,7 +17,7 @@ public class Game implements Parcelable {
 
 
     private ArrayList<Score> mGameScores;
-    private final int GAME_ROUNDS;
+    public final int GAME_ROUNDS;
     private int mRoundNr;
     private GameRound mGameRound;
 
@@ -52,14 +54,24 @@ public class Game implements Parcelable {
         mGameScores.add(mGameRound.getScore());
     }
 
-    public void nextRound() {
+    public boolean nextRound() {
         if (mRoundNr < GAME_ROUNDS) {
             mRoundNr++;
             saveScore();
             mGameRound = new GameRound();
+            return false;
         } else {
             saveScore();
+            return true;
         }
+    }
+
+    public void setRoundNrText(TextView view){
+        view.setText("Round: " + mRoundNr);
+    }
+
+    public int getRoundNr() {
+        return mRoundNr;
     }
 
     /**
