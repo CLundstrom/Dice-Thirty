@@ -15,21 +15,21 @@ public class ScoreView  {
 
     public ScoreView(TextView textView){
         mTextView = textView;
-        updateView();
+        setDefaultScoreView();
     }
 
     /**
      * Updates the TextView with a provided Score.
      * @param score Score-object to be provided.
      */
-    public void updateViewWithScore(Score score){
+    public void setScoreView(Score score){
         this.mTextView.setText("Points: " + score.getScore());
     }
 
     /**
      * Sets the default point text without a Score.
      */
-    public void updateView(){
+    public void setDefaultScoreView(){
         this.mTextView.setText("Points: ");
     }
 

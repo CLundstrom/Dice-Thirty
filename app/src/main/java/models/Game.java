@@ -1,7 +1,8 @@
 package models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import java.util.ArrayList;
-import controllers.GameController;
 
 /**
  * @Author: Christoffer Lundstrom
@@ -9,36 +10,55 @@ import controllers.GameController;
  * <p>
  * @Description: Model for a Game of Thirty.
  */
-public class Game {
+public class Game implements Parcelable {
+
+
 
     private ArrayList<Score> mGameScores;
-    private final int GAME_ROUNDS = 10;
+    private final int GAME_ROUNDS;
     private int mRoundNr;
-    private GameRound gameRound;
-    private GameController mGameControllerRef;
+    private GameRound mGameRound;
 
     /**
      * A new game is Initialized and Default values are set.
      */
-    public Game(GameController gameController) {
+    public Game() {
         mRoundNr = 1;
+        GAME_ROUNDS = 10;
         mGameScores = new ArrayList<>();
-        gameRound = new GameRound();
-        mGameControllerRef = gameController;
+        mGameRound = new GameRound();
     }
 
+    protected Game(Parcel in) {
+        mGameScores = (ArrayList<Score>)in.readSerializable();
+        GAME_ROUNDS = in.readInt();
+        mRoundNr = in.readInt();
+        mGameRound = in.readParcelable(GameRound.class.getClassLoader());
+    }
+
+    public static final Creator<Game> CREATOR = new Creator<Game>() {
+        @Override
+        public Game createFromParcel(Parcel in) {
+            return new Game(in);
+        }
+
+        @Override
+        public Game[] newArray(int size) {
+            return new Game[size];
+        }
+    };
+
     private void saveScore() {
-        mGameScores.add(gameRound.getScore());
+        mGameScores.add(mGameRound.getScore());
     }
 
     public void nextRound() {
         if (mRoundNr < GAME_ROUNDS) {
             mRoundNr++;
             saveScore();
-            gameRound = new GameRound();
+            mGameRound = new GameRound();
         } else {
             saveScore();
-            mGameControllerRef.endGame();
         }
     }
 
@@ -53,6 +73,19 @@ public class Game {
      * @return Currently played round.
      */
     public GameRound getCurrentRound() {
-        return gameRound;
+        return mGameRound;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeSerializable(mGameScores);
+        dest.writeInt(GAME_ROUNDS);
+        dest.writeInt(mRoundNr);
+        dest.writeParcelable(mGameRound, 0);
     }
 }

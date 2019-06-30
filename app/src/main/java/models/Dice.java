@@ -2,6 +2,7 @@ package models;
 
 import com.example.thirty.R;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Random;
  * <p>
  * @Description: Model for a Dice.
  */
-public class Dice {
+public class Dice implements Serializable {
 
     private int mValue;
     private boolean mMarked;

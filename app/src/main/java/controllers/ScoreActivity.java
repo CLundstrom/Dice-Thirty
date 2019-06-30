@@ -35,6 +35,7 @@ public class ScoreActivity extends AppCompatActivity {
             Intent intent = getIntent();
             mScoreList = (ArrayList<Score>) intent.getExtras().getSerializable("ScoreList");
         }
+
         setContentView(R.layout.activity_score);
 
         // ViewItems
