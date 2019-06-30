@@ -8,9 +8,9 @@
 
     <ImageView
         android:id="@+id/dice1"
-        android:layout_width="95dp"
-        android:layout_height="93dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="72dp"
         app:layout_constraintEnd_toStartOf="@+id/dice2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,9 +19,9 @@
 
     <ImageView
         android:id="@+id/dice2"
-        android:layout_width="95dp"
-        android:layout_height="93dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="72dp"
         app:layout_constraintEnd_toStartOf="@+id/dice3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/dice1"
@@ -30,9 +30,9 @@
 
     <ImageView
         android:id="@+id/dice3"
-        android:layout_width="95dp"
-        android:layout_height="93dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="72dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/dice2"
@@ -41,9 +41,9 @@
 
     <ImageView
         android:id="@+id/dice4"
-        android:layout_width="95dp"
-        android:layout_height="93dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toStartOf="@+id/dice5"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,10 +52,10 @@
 
     <ImageView
         android:id="@+id/dice5"
-        android:layout_width="95dp"
-        android:layout_height="93dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
 
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toStartOf="@+id/dice6"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/dice4"
@@ -64,9 +64,9 @@
 
     <ImageView
         android:id="@+id/dice6"
-        android:layout_width="95dp"
-        android:layout_height="93dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/dice5"
@@ -77,10 +77,10 @@
         android:id="@+id/button_roll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="208dp"
+        android:layout_marginTop="104dp"
         android:text="@string/button_roll"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dice5" />
 
@@ -93,19 +93,19 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/button_roll"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dice5"
-        app:layout_constraintVertical_bias="0.994" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/button_collect_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="56dp"
         android:text="@string/collect_points"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_roll" />
 
@@ -113,8 +113,9 @@
         android:id="@+id/spinner"
         android:layout_width="222dp"
         android:layout_height="25dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_collect_score" />
 
@@ -122,10 +123,10 @@
         android:id="@+id/score_view"
         android:layout_width="90dp"
         android:layout_height="25dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/button_collect_score"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -141,6 +142,7 @@
         app:layout_constraintBottom_toTopOf="@+id/rolls"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dice5" />
+        app:layout_constraintTop_toBottomOf="@+id/dice5"
+        app:layout_constraintVertical_bias="0.846" />
 
 </android.support.constraint.ConstraintLayout>
