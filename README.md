@@ -1,41 +1,18 @@
-### Game structure
+## Dice Game - Thirty
 
-#### Main Activity
+A Software Engineering project for the course 
 
-Welcome screen. Starts a game of Thirty.
+<strong>Development of Mobile Applications (5DV209)</strong> at Umeå University. Summer 2019.
 
-#### GameActivity
+Made in Android Studio and written in Java.
+#### Dependencies
 
-Provides the Game Logic.
+Android API Level 25-28
 
+#### Rules
 
-10 rounds.
-
-One round:
-
-Throws 6 dices. Choose the ones you want to save. Rethrow others.
-
-Choose to count as x.
-Sum amount of ways to x. Add score.
-
-Example: 
-
-6 6 2 1 3 -> Rethrow 2,1,3
-
-6 6 6 1 2 -> Rethrow 1,2
-
-6,6,6,4,3 -> Round 1 Score: 
-
-Choose 6 combination as score -> 18 points.
-
-Remove 6 from available score picks.
-
-Repeat 10 times.
-
-Throws 3*10 = 30. Hence Thirty.
-
-#### ResultActivity
-
-Displays the final score.
+        1. A game consists of 10 rounds.
+        2. Each round has 2 chances to re-roll any number of dices.
+        3. Each value can be chosen to collect points only once.
 
 
