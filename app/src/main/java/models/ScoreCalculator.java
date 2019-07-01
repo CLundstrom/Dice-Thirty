@@ -9,7 +9,7 @@ import java.util.Arrays;
  * @Author: Christoffer Lundstrom
  * @Date: 20/06/2019
  * <p>
- * @Description: A class that calculate the Score of a dice combination.
+ * @Description: A class that calculates the Score of a dice combination.
  *
  * Uses an algorithm designed to find all Permutations of the Dices and compare all of them to
  * find the largest sum possible for the given value.
@@ -28,13 +28,9 @@ public class ScoreCalculator {
      * Converts all the values of a set of dices to an Integer array.
      *
      * @param dices Any number of dices.
-     * @return Unsorted list of Dices values. Solely for score Calculation.
+     * @return Unsorted list of Dices values. Solely for Score Calculation.
      */
     private static int[] convertDiceValueArray(ArrayList<Dice> dices) {
-        int tmpValue = 0;
-        int score = 0;
-        int sum = 0;
-
         int[] combos = new int[dices.size()];
 
         for (int i = 0; i < dices.size(); i++) {
@@ -87,7 +83,7 @@ public class ScoreCalculator {
 
             findPermutations(position + 1, array);
 
-            array[i] = array[position]; // swap the values back
+            array[i] = array[position];
             array[position] = temp;
         }
     }
@@ -131,7 +127,7 @@ public class ScoreCalculator {
 
 
     /**
-     * Calculates the Score when a user chooses Low score.
+     * Calculates the Score when a user chooses Low score (special case).
      *
      * @return Returns the summarized score.
      */

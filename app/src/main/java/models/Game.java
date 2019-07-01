@@ -31,6 +31,11 @@ public class Game implements Parcelable {
         mGameRound = new GameRound();
     }
 
+    /**
+     * Game reinitialized with Parcelable.
+     *
+     * @param in Parcel
+     */
     protected Game(Parcel in) {
         mGameScores = (ArrayList<Score>)in.readSerializable();
         GAME_ROUNDS = in.readInt();
@@ -50,6 +55,9 @@ public class Game implements Parcelable {
         }
     };
 
+    /**
+     * Adds the current Round Score to the Game Score list.
+     */
     private void saveScore() {
         mGameScores.add(mGameRound.getScore());
     }
@@ -66,6 +74,10 @@ public class Game implements Parcelable {
         }
     }
 
+    /**
+     * Sets current round number of text-view.
+     * @param view
+     */
     public void setRoundNrText(TextView view){
         view.setText("Round: " + mRoundNr);
     }

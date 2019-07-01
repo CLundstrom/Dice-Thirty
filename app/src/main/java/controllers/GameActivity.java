@@ -49,7 +49,6 @@ public class GameActivity extends AppCompatActivity {
     private ArrayAdapter<String> mAdapter;
     private ArrayList<ImageView> mDiceViews;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

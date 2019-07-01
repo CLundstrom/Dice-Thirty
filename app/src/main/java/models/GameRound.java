@@ -121,6 +121,8 @@ public class GameRound implements Parcelable {
     }
 
     /**
+     * Makes sure the user don't exceed maximum rerolls.
+     *
      * @param context The context in which the Error Toast should appear.
      */
     private boolean isAttemptValid(Context context) {
