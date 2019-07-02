@@ -1,4 +1,4 @@
-package controllers;
+package se.umu.chlu0125.thirty.controllers;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,22 +13,22 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.thirty.R;
-import com.example.thirty.Views.ScoreView;
+import se.umu.chlu0125.thirty.R;
+import se.umu.chlu0125.thirty.views.ScoreView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import models.Game;
-import models.Score;
-import models.ScoreCalculator;
+import se.umu.chlu0125.thirty.models.Game;
+import se.umu.chlu0125.thirty.models.Score;
+import se.umu.chlu0125.thirty.models.ScoreCalculator;
 
 
 /**
- * @Author: Christoffer Lundstrom
- * @Date: 10/06/2019
+ * Author: Christoffer Lundstrom
+ * Date: 10/06/2019
  * <p>
- * @Description: Represents the Screen viewed after initiating a New Game.
+ * Description: Represents the Screen viewed after initiating a New Game.
  */
 public class GameActivity extends AppCompatActivity {
 
@@ -230,6 +230,7 @@ public class GameActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ScoreActivity.class);
         intent.putExtra("ScoreList", mGame.getGameScores());
         startActivity(intent);
+        finish();
     }
 
     /**

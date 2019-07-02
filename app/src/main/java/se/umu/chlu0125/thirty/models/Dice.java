@@ -1,15 +1,15 @@
-package models;
+package se.umu.chlu0125.thirty.models;
 
-import com.example.thirty.R;
+import se.umu.chlu0125.thirty.R;
 
 import java.io.Serializable;
 import java.util.Random;
 
 /**
- * @Author: Christoffer Lundstrom
- * @Date: 10/06/2019
+ * Author: Christoffer Lundstrom
+ * Date: 10/06/2019
  * <p>
- * @Description: Model for a Dice.
+ * Description: Model for a Dice.
  */
 public class Dice implements Serializable {
 

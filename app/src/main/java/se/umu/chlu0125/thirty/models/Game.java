@@ -1,4 +1,4 @@
-package models;
+package se.umu.chlu0125.thirty.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -7,10 +7,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * @Author: Christoffer Lundstrom
- * @Date: 10/06/2019
+ * Author: Christoffer Lundstrom
+ * Date: 10/06/2019
  * <p>
- * @Description: Model for a Game of Thirty.
+ * Description: Model for a Game of Thirty.
  */
 public class Game implements Parcelable {
 

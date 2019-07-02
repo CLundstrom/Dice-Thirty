@@ -1,12 +1,12 @@
-package models;
+package se.umu.chlu0125.thirty.models;
 
 import java.io.Serializable;
 
 /**
- * @Author: Christoffer Lundstrom
- * @Date: 17/06/2019
+ * Author: Christoffer Lundstrom
+ * Date: 17/06/2019
  * <p>
- * @Description: A class that handles Scoring of Dice-Tosses.
+ * Description: A class that handles Scoring of Dice-Tosses.
  */
 public class Score implements Serializable {
 

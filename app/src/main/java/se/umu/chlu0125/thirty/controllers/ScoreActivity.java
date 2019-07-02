@@ -1,4 +1,4 @@
-package controllers;
+package se.umu.chlu0125.thirty.controllers;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,17 +6,17 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.thirty.R;
+import se.umu.chlu0125.thirty.R;
 
 import java.util.ArrayList;
 
-import models.Score;
+import se.umu.chlu0125.thirty.models.Score;
 
 /**
- * @Author: Christoffer Lundstrom
- * @Date: 10/06/2019
+ * Author: Christoffer Lundstrom
+ * Date: 10/06/2019
  * <p>
- * @Description: The Activity which handles the final Score screen and displays the results.
+ * Description: The Activity which handles the final Score screen and displays the results.
  */
 public class ScoreActivity extends AppCompatActivity {
 
@@ -45,8 +45,11 @@ public class ScoreActivity extends AppCompatActivity {
 
 
         // Activity buttons
-        buttonReplay.setOnClickListener(d -> startActivity(new Intent(this, GameActivity.class)));
-        buttonMain.setOnClickListener(d -> startActivity(new Intent(this, MainActivity.class)));
+        buttonReplay.setOnClickListener(d -> {
+            startActivity(new Intent(this, GameActivity.class));
+            finish();
+        });
+        buttonMain.setOnClickListener(d -> finish());
         printScores();
     }
 
@@ -65,7 +68,8 @@ public class ScoreActivity extends AppCompatActivity {
 
 
         int total = 0;
-        mScoreList.sort((s1,s2) -> s1.getChoice().compareTo(s2.getChoice()));
+        // SORT NOT SUPPORTED BELOW API 25
+        //mScoreList.sort((s1,s2) -> s1.getChoice().compareTo(s2.getChoice()));
         mScoreText.append("Choice.........Score\n\n");
         for(Score entry: mScoreList){
             total+= entry.getScore();

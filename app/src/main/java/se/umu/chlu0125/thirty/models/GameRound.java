@@ -1,4 +1,4 @@
-package models;
+package se.umu.chlu0125.thirty.models;
 
 import android.content.Context;
 import android.os.Parcel;
@@ -7,15 +7,15 @@ import android.view.Gravity;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.thirty.R;
+import se.umu.chlu0125.thirty.R;
 
 import java.util.ArrayList;
 
 /**
- * @Author: Christoffer Lundstrom
- * @Date: 10/06/2019
+ * Author: Christoffer Lundstrom
+ * Date: 10/06/2019
  * <p>
- * @Description: Model for one Round in a Game of Thirty.
+ * Description: Model for one Round in a Game of Thirty.
  */
 public class GameRound implements Parcelable {
 

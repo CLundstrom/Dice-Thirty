@@ -1,4 +1,4 @@
-package models;
+package se.umu.chlu0125.thirty.models;
 
 import android.util.Log;
 
@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * @Author: Christoffer Lundstrom
- * @Date: 20/06/2019
+ * Author: Christoffer Lundstrom
+ * Date: 20/06/2019
  * <p>
- * @Description: A class that calculates the Score of a dice combination.
+ * Description: A class that calculates the Score of a dice combination.
  *
  * Uses an algorithm designed to find all Permutations of the Dices and compare all of them to
  * find the largest sum possible for the given value.

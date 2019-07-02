@@ -1,18 +1,18 @@
-package controllers;
+package se.umu.chlu0125.thirty.controllers;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 
-import com.example.thirty.R;
+import se.umu.chlu0125.thirty.R;
 
 
 /**
- * @Author: Christoffer Lundstrom
- * @Date: 10/06/2019
+ * Author: Christoffer Lundstrom
+ * Date: 10/06/2019
  * <p>
- * @Description: Main title screen.
+ * Description: Main title screen.
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         newGame = findViewById(R.id.new_game);
-        newGame.setOnClickListener((v) -> startActivity(new Intent(this, GameActivity.class)));
+        newGame.setOnClickListener((v) -> {
+            startActivity(new Intent(this, GameActivity.class));
+        });
 
     }
 }

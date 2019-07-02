@@ -1,13 +1,13 @@
-package com.example.thirty.Views;
+package se.umu.chlu0125.thirty.views;
 import android.widget.TextView;
 
-import models.Score;
+import se.umu.chlu0125.thirty.models.Score;
 
 /**
- * @Author: Christoffer Lundstrom
- * @Date: 20/06/2019
+ * Author: Christoffer Lundstrom
+ * Date: 20/06/2019
  * <p>
- * @Description: Handles the display of current Score when given a TextView and a Score.
+ * Description: Handles the display of current Score when given a TextView and a Score.
  */
 public class ScoreView  {
 
