@@ -7,7 +7,7 @@ A Software Engineering project for the course
 Made in Android Studio and written in Java.
 #### Dependencies
 
-Android API Level 25-28
+Android API Level 19-28
 
 #### Rules
 
