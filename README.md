@@ -14,5 +14,9 @@ Android API Level 19-28
         1. A game consists of 10 rounds.
         2. Each round has 2 chances to re-roll any number of dices.
         3. Each value can be chosen to collect points only once.
-
-
+<br>
+<br>
+<strong>MainActivity</strong><br>
+<img src="screenshots/2.png" width="400"><br>
+<strong>GameActivity</strong><br>
+<img src="screenshots/1.png" width="400">
